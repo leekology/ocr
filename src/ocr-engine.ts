@@ -1,22 +1,15 @@
-import type { PaddleOCRStatic, PaddleOCRInstance, OcrResult } from "./types/paddleocr";
+import { PaddleOCR } from "@paddleocr/paddleocr-js";
+import type { OcrResult } from "@paddleocr/paddleocr-js";
 import { getState, setOcrReady, setOcrInitializing, setStatus } from "./state";
 
-const PADDLEOCR_CDN = "https://cdn.jsdelivr.net/npm/@paddleocr/paddleocr-js@0.3.2/+esm";
+type OcrEngine = Awaited<ReturnType<typeof PaddleOCR.create>>;
+
 const ORT_CDN = "https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/";
 
-let PaddleOCR: PaddleOCRStatic | null = null;
-let engine: PaddleOCRInstance | null = null;
+let engine: OcrEngine | null = null;
 
-export function getEngine(): PaddleOCRInstance | null {
+export function getEngine(): OcrEngine | null {
   return engine;
-}
-
-async function loadModule(): Promise<PaddleOCRStatic> {
-  if (PaddleOCR) return PaddleOCR;
-  const mod = await import(/* @vite-ignore */ PADDLEOCR_CDN);
-  PaddleOCR = (mod.PaddleOCR ?? mod.default?.PaddleOCR ?? mod.default) as PaddleOCRStatic;
-  if (!PaddleOCR) throw new Error("Failed to load PaddleOCR from CDN");
-  return PaddleOCR;
 }
 
 export async function initEngine(): Promise<void> {
@@ -31,8 +24,7 @@ export async function initEngine(): Promise<void> {
   }
 
   try {
-    const Paddle = await loadModule();
-    engine = await Paddle.create({
+    engine = await PaddleOCR.create({
       initialize: false,
       worker: false,
       lang: s.lang,

@@ -1,4 +1,4 @@
-import type { OcrResultItem } from "../types/paddleocr";
+import type { OcrResultItem } from "@paddleocr/paddleocr-js";
 
 export interface MarkdownOptions {
   includeScores: boolean;

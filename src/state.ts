@@ -1,5 +1,5 @@
 import { EventEmitter } from "./utils/events";
-import type { OcrResult, OcrResultItem } from "./types/paddleocr";
+import type { OcrResult, OcrResultItem } from "@paddleocr/paddleocr-js";
 
 // --- Types ---
 
