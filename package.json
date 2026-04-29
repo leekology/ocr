@@ -1,0 +1,21 @@
+{
+  "name": "scan-to-markdown",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Browser-based batch OCR tool — convert scanned PDFs and images to Markdown",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@paddleocr/paddleocr-js": "file:../paddleocr-js/packages/core",
+    "fflate": "^0.8.2",
+    "pdfjs-dist": "^4.9.155"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  }
+}
