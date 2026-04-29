@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@paddleocr/paddleocr-js": "file:../paddleocr-js/packages/core",
     "fflate": "^0.8.2",
     "pdfjs-dist": "^4.9.155"
   },

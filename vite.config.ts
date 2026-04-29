@@ -1,13 +1,7 @@
 import { defineConfig } from "vite";
-import { resolve } from "path";
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@paddleocr/paddleocr-js": resolve(__dirname, "../paddleocr-js/packages/core/src"),
-      "@paddleocr/paddleocr-js/viz": resolve(__dirname, "../paddleocr-js/packages/core/src/viz")
-    }
-  },
+  base: "/ocr/",
   server: {
     headers: {
       "Cross-Origin-Opener-Policy": "same-origin",
@@ -27,8 +21,5 @@ export default defineConfig({
   },
   worker: {
     format: "es"
-  },
-  optimizeDeps: {
-    exclude: ["@paddleocr/paddleocr-js"]
   }
 });
